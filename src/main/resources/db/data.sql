@@ -1,0 +1,11 @@
+INSERT IGNORE INTO kpac VALUES (1, 'ArrayList', 'ArrayList', '2022-08-19');
+INSERT IGNORE INTO kpac VALUES (2, 'LinkedList', 'LinkedList', '2022-08-20');
+INSERT IGNORE INTO kpac VALUES (3, 'ArrayDeque', 'ArrayDeque', '2022-08-21');
+
+INSERT IGNORE INTO kset VALUES (1, 'List');
+INSERT IGNORE INTO kset VALUES (2, 'Qeque');
+
+INSERT IGNORE INTO pac_set VALUES (1, 1);
+INSERT IGNORE INTO pac_set VALUES (1, 2);
+INSERT IGNORE INTO pac_set VALUES (2, 3);
+INSERT IGNORE INTO pac_set VALUES (2, 2);
