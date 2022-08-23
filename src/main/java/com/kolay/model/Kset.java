@@ -22,7 +22,7 @@ public class Kset {
     @Column(length = 250)
     private String title;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "pac_set",
             joinColumns = @JoinColumn(name = "kset_id"),

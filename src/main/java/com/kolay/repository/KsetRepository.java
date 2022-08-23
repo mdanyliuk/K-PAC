@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface KsetRepository {
 
-    public List<Kset> findAll();
+    List<Kset> findAll();
+
+    Kset findById(Integer id);
 
 }
