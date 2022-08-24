@@ -64,14 +64,20 @@ public class AppController {
 
     @RequestMapping(value = {"/sets"}, method = RequestMethod.GET)
     public String getAllSets(Model model) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
         model.addAttribute("sets", gson.toJson(kpacService.findAllSets()));
         return "sets";
     }
 
     @RequestMapping(value = {"/set/{id}"}, method = RequestMethod.GET)
     public String getPacsOfSet(@PathVariable("id") Integer id, Model model) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
         model.addAttribute("setName", kpacService.findSetById(id).getTitle());
         model.addAttribute("kpacs",
                 gson.toJson(kpacService.findPacsBySetId(id)));

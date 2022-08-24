@@ -14,7 +14,7 @@
     		<nav class="dhx_sample-header__breadcrumbs">
             	<ul class="dhx_sample-header-breadcrumbs">
             		<li class="dhx_sample-header-breadcrumbs__item">
-            			<a href="/kpac-app/newpac" class="dhx_sample-header-breadcrumbs__link">Add new K-pac</a>
+            			<a href="/kpac-app/kpacs" class="dhx_sample-header-breadcrumbs__link">All K-pacs</a>
             		</li>
             	</ul>
             </nav>

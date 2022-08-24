@@ -24,7 +24,7 @@ public class Kset {
     @NotEmpty
     private String title;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "pac_set",
             joinColumns = @JoinColumn(name = "kset_id"),
