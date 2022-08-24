@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS kset (
 CREATE TABLE IF NOT EXISTS pac_set (
   kset_id INT(4) UNSIGNED NOT NULL,
   kpac_id INT(4) UNSIGNED NOT NULL,
-  FOREIGN KEY (kset_id) REFERENCES kset(id),
-  FOREIGN KEY (kpac_id) REFERENCES kpac(id),
+  FOREIGN KEY (kset_id) REFERENCES kset(id) ON DELETE CASCADE,
+  FOREIGN KEY (kpac_id) REFERENCES kpac(id) ON DELETE CASCADE,
   UNIQUE (kset_id,kpac_id)
 ) engine=InnoDB;

@@ -10,4 +10,10 @@ public interface KsetRepository {
 
     Kset findById(Integer id);
 
+    Integer save(Kset kset);
+
+    void deleteById(Integer id);
+
+    void addPacToSet(Integer ksetId, Integer kpacId);
+
 }

@@ -20,7 +20,7 @@
             </nav>
     		<h1 class="dhx_sample-header__title">
     			<div class="dhx_sample-header__content">
-    				K - pacs
+    				K-pac Sets
     			</div>
     		</h1>
     		<nav class="dhx_sample-header__breadcrumbs">
@@ -62,6 +62,12 @@
                 }
             }
     	});
+
+
+    	grid.events.on("cellDblClick", function(row,column,e){
+    	    window.open('/kpac-app/set/' + row.id, "set", "width=440,height=450");
+        });
+
     </script>
     <style>
       	body {
