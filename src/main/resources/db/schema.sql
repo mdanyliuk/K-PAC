@@ -1,5 +1,7 @@
 CREATE DATABASE IF NOT EXISTS kpacapp;
 
+USE kpacapp;
+
 ALTER DATABASE kpacapp
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;

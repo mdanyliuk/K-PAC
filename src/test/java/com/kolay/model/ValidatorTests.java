@@ -16,7 +16,8 @@ import java.util.Set;
 public class ValidatorTests {
 
     private Validator createValidator() {
-        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
+        LocalValidatorFactoryBean localValidatorFactoryBean =
+                new LocalValidatorFactoryBean();
         localValidatorFactoryBean.afterPropertiesSet();
         return localValidatorFactoryBean;
     }

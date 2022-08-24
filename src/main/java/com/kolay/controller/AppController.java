@@ -3,7 +3,6 @@ package com.kolay.controller;
 import com.google.gson.*;
 import com.kolay.model.Kpac;
 import com.kolay.model.KpacDto;
-import com.kolay.model.Kset;
 import com.kolay.model.KsetDto;
 import com.kolay.service.KpacService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.lang.reflect.Type;
@@ -44,15 +41,16 @@ public class AppController {
         Kpac newKpac = new Kpac();
         model.addAttribute("kpac", newKpac);
         model.addAttribute("errorMessage", "");
-        return "newpac";
+        return "newpacpage";
     }
 
     @RequestMapping(value = {"/newpac"}, method = RequestMethod.POST)
-    public String savePac(@ModelAttribute("kpac") @Valid Kpac kpac, BindingResult result, Model model) {
+    public String savePac(@ModelAttribute("kpac") @Valid Kpac kpac, BindingResult result,
+                          Model model) {
         if (result.hasErrors()) {
             model.addAttribute("kpac", kpac);
             model.addAttribute("errorMessage", "Title must not be empty");
-            return "newpac";
+            return "newpacpage";
         }
         kpacService.saveKpac(kpac);
         return "redirect:/kpacs/";
@@ -75,7 +73,8 @@ public class AppController {
     public String getPacsOfSet(@PathVariable("id") Integer id, Model model) {
         Gson gson = new Gson();
         model.addAttribute("setName", kpacService.findSetById(id).getTitle());
-        model.addAttribute("kpacs", gson.toJson(kpacService.findPacsBySetId(id)));
+        model.addAttribute("kpacs",
+                gson.toJson(kpacService.findPacsBySetId(id)));
         return "pacsOfSet";
     }
 
@@ -120,7 +119,8 @@ public class AppController {
 
     class LocalDateAdapter implements JsonSerializer<LocalDate> {
 
-        public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context) {
+        public JsonElement serialize(LocalDate date, Type typeOfSrc,
+                                     JsonSerializationContext context) {
             return new JsonPrimitive(date.format(DateTimeFormatter.ISO_LOCAL_DATE)); // "yyyy-mm-dd"
         }
     }

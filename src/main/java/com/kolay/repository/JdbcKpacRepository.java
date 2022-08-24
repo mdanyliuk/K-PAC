@@ -21,7 +21,8 @@ public class JdbcKpacRepository implements KpacRepository {
     }
 
     public List<Kpac> findAll() {
-        return jdbcTemplate.query("select * from kpac", BeanPropertyRowMapper.newInstance(Kpac.class));
+        return jdbcTemplate.query("select * from kpac",
+                BeanPropertyRowMapper.newInstance(Kpac.class));
     }
 
     @Override
@@ -29,13 +30,15 @@ public class JdbcKpacRepository implements KpacRepository {
         return jdbcTemplate.query("SELECT * From kpac \n"
                 + "inner join pac_set\n"
                 + "on kpac.id = pac_set.kpac_id\n"
-                + "where pac_set.kset_id = ?", BeanPropertyRowMapper.newInstance(Kpac.class), setId);
+                + "where pac_set.kset_id = ?",
+                BeanPropertyRowMapper.newInstance(Kpac.class), setId);
     }
 
     @Override
     public void save(Kpac kpac) {
         jdbcTemplate.update("INSERT INTO kpac (title, description, creation_date) " +
-                "values (?, ?, ?)", kpac.getTitle(), kpac.getDescription(), kpac.getCreationDate());
+                "values (?, ?, ?)", kpac.getTitle(), kpac.getDescription(),
+                kpac.getCreationDate());
     }
 
     @Override

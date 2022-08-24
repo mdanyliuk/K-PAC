@@ -41,7 +41,8 @@ public class JdbcKsetRepository implements KsetRepository {
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection
-                    .prepareStatement("INSERT INTO kset (title) values (?)", Statement.RETURN_GENERATED_KEYS);
+                    .prepareStatement("INSERT INTO kset (title) values (?)",
+                            Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, kset.getTitle());
             return ps;
         }, keyHolder);

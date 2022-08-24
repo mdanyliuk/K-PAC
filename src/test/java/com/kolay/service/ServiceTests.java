@@ -23,7 +23,8 @@ import java.util.List;
 import org.springframework.test.context.ContextConfiguration;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {WebConfiguration.class, DataSourceConfiguration.class, TestDataConfiguration.class})
+@ContextConfiguration(classes = {WebConfiguration.class,
+        DataSourceConfiguration.class, TestDataConfiguration.class})
 @WebAppConfiguration
 public class ServiceTests {
     private KpacService kpacService;
