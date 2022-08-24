@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -42,11 +43,17 @@ public class AppController {
     public String newPacForm(Model model) {
         Kpac newKpac = new Kpac();
         model.addAttribute("kpac", newKpac);
+        model.addAttribute("errorMessage", "");
         return "newpac";
     }
 
     @RequestMapping(value = {"/newpac"}, method = RequestMethod.POST)
-    public String savePac(@ModelAttribute("kpac") Kpac kpac, BindingResult result) {
+    public String savePac(@ModelAttribute("kpac") @Valid Kpac kpac, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("kpac", kpac);
+            model.addAttribute("errorMessage", "Title must not be empty");
+            return "newpac";
+        }
         kpacService.saveKpac(kpac);
         return "redirect:/kpacs/";
     }
@@ -74,6 +81,12 @@ public class AppController {
 
     @RequestMapping(value = {"/newset"}, method = RequestMethod.GET)
     public String newSetForm(Model model) {
+        model.addAttribute("kset", initializeNewKsetDto());
+        model.addAttribute("errorMessage", "");
+        return "newset";
+    }
+
+    private KsetDto initializeNewKsetDto() {
         KsetDto newKsetDto = new KsetDto();
         List<Kpac> allKpacs = kpacService.findAllKpacs();
         List<KpacDto> dtos = new ArrayList<>();
@@ -85,14 +98,15 @@ public class AppController {
             dtos.add(dto);
         }
         newKsetDto.setKpacs(dtos);
-        model.addAttribute("kset", newKsetDto);
-        return "newset";
+        return newKsetDto;
     }
 
     @RequestMapping(value = {"/newset"}, method = RequestMethod.POST)
-    public String saveSet(@ModelAttribute("kset") KsetDto kset, BindingResult result) {
+    public String saveSet(@ModelAttribute("kset") @Valid KsetDto kset, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "404";
+            model.addAttribute("kset", initializeNewKsetDto());
+            model.addAttribute("errorMessage", "Title must not be empty");
+            return "newset";
         }
         kpacService.addKset(kset);
         return "redirect:/sets/";

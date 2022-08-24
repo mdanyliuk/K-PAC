@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Kpac {
@@ -16,6 +17,7 @@ public class Kpac {
     private Integer id;
 
     @Column(length = 250)
+    @NotEmpty
     private String title;
 
     @Column(length = 2000)

@@ -47,7 +47,7 @@ public class KpacService {
         return ksetRepository.findById(id);
     }
 
-    public void addKset(KsetDto ksetDto) {
+    public Integer addKset(KsetDto ksetDto) {
         Kset kset = new Kset();
         kset.setTitle(ksetDto.getTitle());
         Integer ksetId = ksetRepository.save(kset);
@@ -57,6 +57,7 @@ public class KpacService {
                 ksetRepository.addPacToSet(ksetId, kpacDto.getId());
             }
         }
+        return ksetId;
     }
 
     public void deleteSetById(Integer id) {

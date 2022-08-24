@@ -11,6 +11,7 @@
 <body>
 	<div class="container">
 		<h2>K-Pac Form</h2>
+		<p style="color:red;">${errorMessage}</p>
 
 		<form method="POST" modelAttribute="kpac"
 			class="form-horizontal">

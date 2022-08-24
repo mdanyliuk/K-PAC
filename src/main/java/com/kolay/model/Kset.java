@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Kset {
@@ -20,6 +21,7 @@ public class Kset {
     private Integer id;
 
     @Column(length = 250)
+    @NotEmpty
     private String title;
 
     @ManyToMany(fetch = FetchType.EAGER)

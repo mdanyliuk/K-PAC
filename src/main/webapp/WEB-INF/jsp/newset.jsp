@@ -13,6 +13,7 @@
 <body>
 	<div class="container">
 		<h2>Add New K-Pac Set</h2>
+        <p style="color:red;">${errorMessage}</p>
 
 		<form method="POST" modelAttribute="kset">
 		    <div class="form-group">

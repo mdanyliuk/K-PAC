@@ -1,8 +1,11 @@
 package com.kolay.model;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class KsetDto {
+
+    @NotEmpty
     private String title;
     private List<KpacDto> kpacs;
 
